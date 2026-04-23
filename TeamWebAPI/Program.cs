@@ -12,6 +12,8 @@ builder.Services.AddOpenApiDocument(config =>
 {
     config.Title = "Team Web API";
     config.Version = "v1";
+    config.Description = "A Web API for managing team members, hobbies, breakfast foods, and favorite movies.";
+    config.UseControllerSummaryAsTagDescription = true;
 });
 
 var app = builder.Build();
@@ -19,7 +21,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseOpenApi();
-    app.UseSwaggerUi();
+    app.UseSwaggerUi(settings =>
+    {
+        settings.DocumentTitle = "Team Web API";
+    });
 }
 
 app.UseHttpsRedirection();
